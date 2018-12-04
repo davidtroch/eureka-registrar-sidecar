@@ -67,7 +67,8 @@ def get_vcap_config():
 def get_application_info():
 	appinfo = {}
 	vcap_application = json.loads(os.getenv('VCAP_APPLICATION', '{}'))
-	appinfo['name'] = vcap_application.get('application_name')
+	appinfo_temp = vcap_application.get('application_name')
+        appinfo['name'] = appinfo_temp.upper()
 	if appinfo['name'] == None:
 		print >> sys.stderr, "VCAP_APPLICATION must specify application_name"
 		sys.exit(1)
